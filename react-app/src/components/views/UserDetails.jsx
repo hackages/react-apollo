@@ -49,7 +49,7 @@ export class _UserDetails extends Component {
                         onCompleted={({ addFriend, removeFriend }) => {
                           setUserInfo(addFriend || removeFriend)
                           snack([
-                            isFriends
+                            !isFriends
                               ? 'Made a new friend 😃'
                               : `You're no longer friends 😿`,
                             'success',
