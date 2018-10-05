@@ -17,3 +17,8 @@ body {
 * {
   box-sizing: border-box;
 }
+
+li {
+  display: inline-block;
+  vertical-align: top;
+}

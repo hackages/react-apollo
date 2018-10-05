@@ -14,6 +14,7 @@ import { compose } from 'redux'
 import { Snacks } from './components/containers/Snacks'
 import { UserDetails } from './components/views/UserDetails'
 import { ProtectedRoute } from './components/HOC/ProtectedRoute'
+import { BeerDetails } from './components/views/BeerDetails'
 
 class _App extends Component {
   componentDidUpdate = prevProps => {
@@ -44,6 +45,7 @@ class _App extends Component {
               <Route path="/login" component={Login} />
               <ProtectedRoute path="/feed" component={Feed} />
               <ProtectedRoute path="/user/:id" component={UserDetails} />
+              <ProtectedRoute path="/beer/:id" component={BeerDetails} />
               <Route exact path="/" component={Home} />
             </Switch>
           </Fragment>
