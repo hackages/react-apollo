@@ -36,22 +36,20 @@ class _App extends Component {
 
   render() {
     const { data } = this.props
-    return (
-      !data.loading && (
-        <div id="app">
-          <Fragment>
-            <Navbar />
-            <Switch>
-              <Route path="/login" component={Login} />
-              <ProtectedRoute path="/feed" component={Feed} />
-              <ProtectedRoute path="/user/:id" component={UserDetails} />
-              <ProtectedRoute path="/beer/:id" component={BeerDetails} />
-              <Route exact path="/" component={Home} />
-            </Switch>
-          </Fragment>
-          <Snacks />
-        </div>
-      )
+    return data && data.loading ? null : (
+      <div id="app">
+        <Fragment>
+          <Navbar />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <ProtectedRoute path="/feed" component={Feed} />
+            <ProtectedRoute path="/user/:id" component={UserDetails} />
+            <ProtectedRoute path="/beer/:id" component={BeerDetails} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </Fragment>
+        <Snacks />
+      </div>
     )
   }
 }
