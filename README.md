@@ -1,3 +1,3 @@
 # React - Apollo
 
-This is the solution branch
+This is the solution branch 👌🏻
