@@ -24,11 +24,22 @@ export class _CheckinModal extends Component {
     const { snack, beer, showModal, toggleModal } = this.props
     const { text, rating } = this.state
     return (
-      <Mutation mutation={checkIn}>
+      <Mutation
+        mutation={checkIn}
+        onCompleted={_ => {
+          this.setState(initialState)
+          snack([`Checked in to ${beer.name}`, 'success'])
+          toggleModal()
+        }}
+        onError={err => {
+          snack([`Wow`, 'error'])
+          toggleModal()
+        }}
+      >
         {addCheckIn => (
           <Modal
             visible={showModal}
-            onSubmit={() => {
+            onSubmit={() =>
               addCheckIn({
                 variables: {
                   beer: beer.id,
@@ -36,10 +47,7 @@ export class _CheckinModal extends Component {
                   text,
                 },
               })
-              this.setState(initialState)
-              snack([`Checked in to ${beer.name}`, 'success'])
-              toggleModal()
-            }}
+            }
             onCancel={toggleModal}
           >
             <h3 slot="header">You're going to check in to {beer.name}</h3>
