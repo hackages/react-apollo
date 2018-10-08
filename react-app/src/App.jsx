@@ -21,7 +21,7 @@ class _App extends Component {
     const { data } = this.props
     if (data) {
       const { loading, error, user } = data
-      if (!loading && !error && loading !== prevProps.data.loading) {
+      if (!loading && !error && !loading && prevProps.data.loading) {
         this.onFetch(user)
       }
     }
@@ -30,16 +30,17 @@ class _App extends Component {
   onFetch = user => {
     const { logUserIn, snack, history } = this.props
     logUserIn({ user, token: localStorage.getItem('token') })
-    history.push('/feed')
     snack([greet(user.username), 'success'])
   }
 
   render() {
     const { data } = this.props
+
     return data && data.loading ? null : (
       <div id="app">
         <Fragment>
           <Navbar />
+          {console.log('test', this.props)}
           <Switch>
             <Route path="/login" component={Login} />
             <ProtectedRoute path="/feed" component={Feed} />

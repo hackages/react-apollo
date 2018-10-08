@@ -20,7 +20,9 @@ export class UserProvider extends Component {
     const { children, id, detailed, history } = this.props
     return (
       <Query query={getUser} variables={{ id, detailed, history }}>
-        {({ loading, error, data: { user } }) => !loading && children({ user })}
+        {({ loading, error, data }) =>
+          !loading && data ? children({ user: data.user }) : null
+        }
       </Query>
     )
   }
