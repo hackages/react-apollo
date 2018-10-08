@@ -1,5 +1,5 @@
-const { pubsub } = require("./utils");
-const { CHECKIN_ADDED } = require("./constants");
+const { pubsub } = require('./utils');
+const { CHECKIN_ADDED } = require('./constants');
 
 const queries = {
   Query: {
@@ -7,7 +7,7 @@ const queries = {
     beers: (_, { limit: _limit = 999 }, { dataSources: { dataAPI } }) =>
       dataAPI.allBeers(_limit),
     user: (_, { id }, { dataSources: { dataAPI }, user }) =>
-      dataAPI.getUser(id || user.id),
+      id ? dataAPI.getUser(id) : user,
     users: (_, { limit: _limit = 999 }, { dataSources: { dataAPI } }) =>
       dataAPI.allUsers(_limit),
     checkins: (_, { limit: _limit = 999 }, { dataSources: { dataAPI } }) =>
