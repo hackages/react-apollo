@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { CheckinItem } from '../dumb/CheckinItem'
 import { Column, RatedBeer } from '../styled/globalStyles'
+import { CheckInType } from '../../types'
 
+const propTypes = {
+  checkins: PropTypes.arrayOf(CheckInType).isRequired,
+}
 export class CheckinsList extends Component {
   componentDidMount = () => {
     const { onMount } = this.props
@@ -21,3 +26,5 @@ export class CheckinsList extends Component {
     )
   }
 }
+
+CheckinsList.propTypes = propTypes

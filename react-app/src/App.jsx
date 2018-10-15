@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import './App.css'
@@ -15,6 +16,16 @@ import { Snacks } from './components/containers/Snacks'
 import { UserDetails } from './components/views/UserDetails'
 import { ProtectedRoute } from './components/HOC/ProtectedRoute'
 import { BeerDetails } from './components/views/BeerDetails'
+import { UserType } from './types'
+
+const propTypes = {
+  data: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    user: UserType,
+  }),
+  logUserIn: PropTypes.func.isRequired,
+  snack: PropTypes.func.isRequired,
+}
 
 class _App extends Component {
   componentDidUpdate = prevProps => {
@@ -28,7 +39,7 @@ class _App extends Component {
   }
 
   onFetch = user => {
-    const { logUserIn, snack, history } = this.props
+    const { logUserIn, snack } = this.props
     logUserIn({ user, token: localStorage.getItem('token') })
     snack([greet(user.username), 'success'])
   }
@@ -40,7 +51,6 @@ class _App extends Component {
       <div id="app">
         <Fragment>
           <Navbar />
-          {console.log('test', this.props)}
           <Switch>
             <Route path="/login" component={Login} />
             <ProtectedRoute path="/feed" component={Feed} />
@@ -54,6 +64,8 @@ class _App extends Component {
     )
   }
 }
+
+_App.propTypes = propTypes
 
 const App = compose(
   withRouter,

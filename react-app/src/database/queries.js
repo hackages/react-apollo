@@ -95,6 +95,7 @@ export const getCheckIn = gql`
       id
       createdAt
       rating
+      text
     }
   }
 `

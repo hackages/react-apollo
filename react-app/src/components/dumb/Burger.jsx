@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import {
   BurgerContainer,
   Burger as BurgerWrap,
@@ -7,6 +8,14 @@ import {
   BurgerLineLeft,
 } from '../styled/globalStyles.js'
 
+const propTypes = {
+  opened: PropTypes.bool.isRequired,
+  onClick: PropTypes.func,
+}
+
+const defaultProps = {
+  onClick: () => {},
+}
 export class Burger extends PureComponent {
   render() {
     const { opened, onClick } = this.props
@@ -21,3 +30,6 @@ export class Burger extends PureComponent {
     )
   }
 }
+
+Burger.propTypes = propTypes
+Burger.defaultProps = defaultProps

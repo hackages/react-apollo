@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
@@ -19,6 +20,14 @@ import { UserSummary } from '../dumb/UserSummary'
 import { setUserInfo, snack } from '../../store'
 import { Mutation } from 'react-apollo'
 import { unfollow, follow } from '../../database/queries'
+
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  isFriends: PropTypes.bool.isRequired,
+  isSelf: PropTypes.bool.isRequired,
+  snack: PropTypes.func.isRequired,
+  setUserInfo: PropTypes.func.isRequired,
+}
 
 export class _UserDetails extends Component {
   render() {
@@ -83,6 +92,8 @@ export class _UserDetails extends Component {
     )
   }
 }
+
+_UserDetails.propTypes = propTypes
 
 export const UserDetails = compose(
   withRouter,

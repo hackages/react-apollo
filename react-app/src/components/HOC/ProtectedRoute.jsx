@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react'
-import { Route, Redirect, withRouter } from 'react-router-dom'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { sleep } from '../../utils'
 
+const propTypes = {
+  wait: PropTypes.bool,
+}
 const defaultProps = {
   wait: false,
 }
@@ -28,4 +32,5 @@ export const ProtectedRoute = compose(
   connect(state => ({ isLoggedIn: state.isLoggedIn }))
 )(_ProtectedRoute)
 
+ProtectedRoute.propTypes = propTypes
 ProtectedRoute.defaultProps = defaultProps

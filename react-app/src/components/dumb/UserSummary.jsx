@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
 import {
   SidebarInfos,
   SidebarInfosBox,
   InfosBold,
 } from '../styled/globalStyles'
+import { UserType } from '../../types'
 
 const propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    beer_history: PropTypes.object,
-    friends: PropTypes.array,
-  }).isRequired,
+  user: UserType,
 }
 
 export class UserSummary extends Component {

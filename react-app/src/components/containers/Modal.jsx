@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { StyledModal } from '../styled/globalStyles'
 import { CSSTransition } from 'react-transition-group'
 
-function Slot({ children, slot, defaultSlot }) {
+const Slot = ({ children, slot, defaultSlot }) => {
   let slottedChild = null
   React.Children.forEach(children, child => {
     if (!React.isValidElement(child)) {
@@ -20,11 +21,20 @@ function Slot({ children, slot, defaultSlot }) {
   return slottedChild
 }
 
-export class Modal extends PureComponent {
-  static defaultProps = {
-    visible: false,
-  }
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
+  visible: PropTypes.bool,
+}
 
+const defaultProps = {
+  visible: false,
+  onSubmit: () => {},
+  onCancel: () => {},
+}
+
+export class Modal extends PureComponent {
   render() {
     const { children, onSubmit, onCancel, visible } = this.props
     const defaultFooter = (
@@ -81,3 +91,6 @@ export class Modal extends PureComponent {
     )
   }
 }
+
+Modal.propTypes = propTypes
+Modal.defaultProps = defaultProps

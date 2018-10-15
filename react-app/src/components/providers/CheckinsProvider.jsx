@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { map, prop, dropLast } from 'ramda'
 import {
@@ -8,16 +9,23 @@ import {
 
 const dropTail = dropLast(1)
 
+const propTypes = {
+  children: PropTypes.func.isRequired,
+  onlyBeers: PropTypes.bool,
+  limit: PropTypes.number,
+}
+
+const defaultProps = {
+  onlyBeers: false,
+  limit: 12,
+}
 export class CheckinsProvider extends PureComponent {
-  static defaultProps = {
-    onlyBeers: false,
-    limit: 12,
-  }
   render() {
     const { onlyBeers, limit, children } = this.props
     return (
       <Query query={getLatestCheckIns} variables={{ onlyBeers, limit }}>
-        {({ subscribeToMore, loading, error, data: { checkins } }) => {
+        {({ subscribeToMore, loading, error, data }) => {
+          const checkins = data && data.checkins ? data.checkins : []
           const beers = loading ? [] : map(prop('beer'))(checkins)
           return (
             !loading &&
@@ -56,3 +64,6 @@ export class CheckinsProvider extends PureComponent {
     )
   }
 }
+
+CheckinsProvider.propTypes = propTypes
+CheckinsProvider.defaultProps = defaultProps

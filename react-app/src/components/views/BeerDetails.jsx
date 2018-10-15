@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { path } from 'ramda'
 import { BeerProvider } from '../providers/BeerProvider'
 import {
@@ -20,6 +21,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { snack } from '../../store'
 import { CheckinModal } from '../layouts/CheckinModal'
+
+const propTypes = {
+  id: PropTypes.string.isRequired,
+}
 
 export class _BeerDetails extends Component {
   state = {
@@ -64,7 +69,7 @@ export class _BeerDetails extends Component {
                     <Row>
                       <Column>
                         {beer.check_ins.map(checkin => (
-                          <li>
+                          <li key={checkin.id}>
                             <CheckinItem checkin={checkin} />
                           </li>
                         ))}
@@ -105,6 +110,8 @@ export class _BeerDetails extends Component {
     )
   }
 }
+
+_BeerDetails.propTypes = propTypes
 
 export const BeerDetails = compose(
   withRouter,

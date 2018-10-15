@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   InputContainer,
   StyledLabel,
   StyledInput,
 } from '../styled/globalStyles'
+
+const propTypes = {
+  id: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+}
+
+const defaultProps = {
+  type: 'text',
+  label: '',
+}
 
 export class LabelledInput extends Component {
   state = {
@@ -38,3 +52,6 @@ export class LabelledInput extends Component {
     )
   }
 }
+
+LabelledInput.propTypes = propTypes
+LabelledInput.defaultProps = defaultProps

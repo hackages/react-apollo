@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import StarRating from 'react-star-rating-component'
 import { connect } from 'react-redux'
 import { Modal } from '../containers/Modal'
@@ -7,6 +8,18 @@ import hackBeer from '../../assets/img/hackbeer.svg'
 import { snack } from '../../store'
 import { Mutation } from 'react-apollo'
 import { checkIn } from '../../database/queries'
+import { BeerType } from '../../types'
+
+const propTypes = {
+  snack: PropTypes.func.isRequired,
+  beer: BeerType,
+  showModal: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func,
+}
+
+const defaultProps = {
+  toggleModal: () => {},
+}
 
 const initialState = {
   text: '',
@@ -83,6 +96,9 @@ export class _CheckinModal extends Component {
     )
   }
 }
+
+_CheckinModal.propTypes = propTypes
+_CheckinModal.defaultProps = defaultProps
 
 export const CheckinModal = connect(
   null,

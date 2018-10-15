@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { Snacks as SnacksContainer } from '../styled/globalStyles'
 import { Snack } from '../dumb/Snack'
+import { SnackType } from '../../types'
 
+const propTypes = {
+  snacks: PropTypes.arrayOf(SnackType),
+}
 export class _Snacks extends Component {
   render() {
     const { snacks } = this.props
@@ -28,6 +33,8 @@ export class _Snacks extends Component {
     )
   }
 }
+
+_Snacks.propTypes = propTypes
 
 export const Snacks = connect(({ snacks }) => ({
   snacks,

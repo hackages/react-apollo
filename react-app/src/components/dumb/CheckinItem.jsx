@@ -1,5 +1,4 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom'
 import {
   RatedBeerContainer,
@@ -9,6 +8,11 @@ import {
 } from '../styled/globalStyles'
 import { Avatar } from './Avatar'
 import { ago } from '../../utils'
+import { CheckInType } from '../../types'
+
+const propTypes = {
+  checkin: CheckInType,
+}
 
 export const CheckinItem = ({
   checkin: { user, beer, rating, text, createdAt },
@@ -43,12 +47,4 @@ export const CheckinItem = ({
   </RatedBeerContainer>
 )
 
-CheckinItem.propTypes = {
-  checkin: PropTypes.shape({
-    user: PropTypes.object.isRequired,
-    beer: PropTypes.object.isRequired,
-    text: PropTypes.string,
-    rating: PropTypes.number.isRequired,
-    createdAt: PropTypes.string.isRequired,
-  }).isRequired,
-}
+CheckinItem.propTypes = propTypes

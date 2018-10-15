@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import { withRouter } from 'react-router'
 import { createUser, signInUser } from '../../database/queries'
@@ -13,6 +14,11 @@ import {
   LinkButton,
 } from '../styled/globalStyles'
 import { LabelledInput } from '../dumb/LabelledInput'
+
+const propTypes = {
+  logUserIn: PropTypes.func.isRequired,
+  snack: PropTypes.func.isRequired,
+}
 
 class _Login extends Component {
   state = {
@@ -94,6 +100,8 @@ class _Login extends Component {
     )
   }
 }
+
+_Login.propTypes = propTypes
 
 export const Login = compose(
   withRouter,

@@ -45,540 +45,12 @@
   ],
   "check_ins": [
     {
-      "id": "fdfmqg1kg7jk9e1kz5",
-      "beer": 100,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:35:48.592Z",
-      "rating": 3.5,
-      "text": "tasty"
-    },
-    {
-      "id": "fdfmqg1kg7jk9e3bnc",
-      "beer": 38,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:37:09.816Z",
-      "rating": 3.25,
-      "text": "underwhelming"
-    },
-    {
-      "id": "fdfmqg1kijjk9eclpd",
-      "beer": 112,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:44:22.752Z",
-      "rating": 4,
-      "text": "lekker"
-    },
-    {
-      "id": "fdfmqg1kj7jk9efwlp",
-      "beer": 124,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:46:56.845Z",
-      "rating": 3.75,
-      "text": "test"
-    },
-    {
-      "id": "fdfmqg1kmfjk9esnry",
-      "beer": 48,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:56:51.933Z",
-      "rating": 3.75,
-      "text": "plop"
-    },
-    {
-      "id": "fdfmqg1kmfjk9euas1",
-      "beer": 48,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:58:08.401Z",
-      "rating": 3.75,
-      "text": "test"
-    },
-    {
-      "id": "fdfmqg1kmfjk9ew4gj",
-      "beer": 76,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T07:59:33.523Z",
-      "rating": 4.75,
-      "text": "lol"
-    },
-    {
-      "id": "fdfmqg1koljk9f7d6e",
-      "beer": 91,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T08:08:18.037Z",
-      "rating": 2,
-      "text": "caca"
-    },
-    {
-      "id": "fdfmqg1koljk9f7ypz",
-      "beer": 152,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T08:08:45.959Z",
-      "rating": 2.5,
-      "text": "sgfh"
-    },
-    {
-      "id": "fdfmqg1la3jk9hoben",
-      "beer": 11,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:17:28.126Z",
-      "rating": 3.75,
-      "text": "ffg"
-    },
-    {
-      "id": "fdfmqg1la3jk9hpbc3",
-      "beer": 12,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:18:14.691Z",
-      "rating": 3.5,
-      "text": "test"
-    },
-    {
-      "id": "fdfmqg1la3jk9hqrva",
-      "beer": 145,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:19:22.774Z",
-      "rating": 2,
-      "text": "fff"
-    },
-    {
-      "id": "fdfmqg1ld6jk9hul2x",
-      "beer": 46,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:22:20.600Z",
-      "rating": 1.5,
-      "text": "caca"
-    },
-    {
-      "id": "fdfmqg1ld6jk9hvh9w",
-      "beer": 74,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:23:02.324Z",
-      "rating": 0.25,
-      "text": "trash"
-    },
-    {
-      "id": "fdfmqg1letjk9hxb6s",
-      "beer": 14,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:24:27.747Z",
-      "rating": 3.25,
-      "text": "qsdfhgh"
-    },
-    {
-      "id": "fdfmqg1letjk9hy3sq",
-      "beer": 73,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:25:04.826Z",
-      "rating": 4.25,
-      "text": ""
-    },
-    {
-      "id": "fdfmqg1lg6jk9i16xk",
-      "beer": 46,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:27:28.855Z",
-      "rating": 2.75,
-      "text": "sd"
-    },
-    {
-      "id": "fdfmqg1li9jk9ib3af",
-      "beer": 15,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:35:10.694Z",
-      "rating": 3.75,
-      "text": "caca"
-    },
-    {
-      "id": "fdfmqg1ljmjk9ie3jr",
-      "beer": 68,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:37:30.998Z",
-      "rating": 4.75,
-      "text": "HYPE"
-    },
-    {
-      "id": "fdfmqg1lkpjk9ila56",
-      "beer": 116,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:43:06.138Z",
-      "rating": 3.75,
-      "text": "MOJITOOOOO"
-    },
-    {
-      "id": "fdfmqg1lkpjk9ixzmt",
-      "beer": 96,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:52:59.045Z",
-      "rating": 4.25,
-      "text": "toto"
-    },
-    {
-      "id": "fdfmqg1lkpjk9j0e9a",
-      "beer": 128,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T09:54:51.310Z",
-      "rating": 3.25,
-      "text": "NA NA NANA"
-    },
-    {
-      "id": "fdfmqg1lkpjk9kxf7d",
-      "beer": 50,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T10:48:31.801Z",
-      "rating": 4.25,
-      "text": "HEAVY & STRONG"
-    },
-    {
-      "id": "fdfmqg1lkpjk9kz2ps",
-      "beer": 103,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T10:49:48.928Z",
-      "rating": 4.75,
-      "text": ""
-    },
-    {
-      "id": "fdfmqg1lkpjk9l38he",
-      "beer": 113,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T10:53:03.026Z",
-      "rating": 3.75,
-      "text": "Hello my name is Anthony"
-    },
-    {
-      "id": "fdfmqg1lkpjk9lc2d9",
-      "beer": 108,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T10:59:55.005Z",
-      "rating": 2.5,
-      "text": "test"
-    },
-    {
-      "id": "fdfmqg1lkpjk9llcgw",
-      "beer": 71,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T11:07:08.000Z",
-      "rating": 4,
-      "text": "tis good"
-    },
-    {
-      "id": "fdfmqg1lkpjk9lnn83",
-      "beer": 154,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-07-31T11:08:55.251Z",
-      "rating": 3.75,
-      "text": "No problem"
-    },
-    {
-      "id": "fdfmqg1lkpjk9omox5",
-      "beer": 71,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-07-31T12:32:09.641Z",
-      "rating": 4,
-      "text": "I like it :D"
-    },
-    {
-      "id": "fdfmqg1lkpjk9q2jva",
-      "beer": 113,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-07-31T13:12:29.206Z",
-      "rating": 3.5,
-      "text": "Hello my name is Alex"
-    },
-    {
-      "id": "fdfmqg1sfvjkb2h660",
-      "beer": 155,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T11:47:32.855Z",
-      "rating": 4.5,
-      "text": "Rich"
-    },
-    {
-      "id": "fdfmqg1shyjkb2r371",
-      "beer": 15,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T11:55:15.564Z",
-      "rating": 3,
-      "text": "Mixtaaaaaape"
-    },
-    {
-      "id": "fdfmqg1skrjkb2w1xi",
-      "beer": 113,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T11:59:07.205Z",
-      "rating": 3.75,
-      "text": "Hello, my name is Filip"
-    },
-    {
-      "id": "fdfmqg1slzjkb2xruk",
-      "beer": 91,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T12:00:27.451Z",
-      "rating": 2.25,
-      "text": "too light for my taste"
-    },
-    {
-      "id": "fdfmqg1snajkb30xj6",
-      "beer": 60,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T12:02:54.785Z",
-      "rating": 3.75,
-      "text": "my favourite movie!"
-    },
-    {
-      "id": "fdfmqg1snujkb31qqr",
-      "beer": 105,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-01T12:03:32.642Z",
-      "rating": 3.75,
-      "text": "no u"
-    },
-    {
-      "id": "fdfmqg1tbdjkb57u5o",
-      "beer": 70,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-01T13:04:16.235Z",
-      "rating": 3.5,
-      "text": "Dark as night"
-    },
-    {
-      "id": "fdfmqg1u27jkc9bt7v",
-      "beer": 75,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:47:06.282Z",
-      "rating": 3.75,
-      "text": "hoppy"
-    },
-    {
-      "id": "fdfmqg1u27jkc9dhes",
-      "beer": 31,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:48:24.292Z",
-      "rating": 2,
-      "text": "too light"
-    },
-    {
-      "id": "fdfmqg1u27jkc9f6tf",
-      "beer": 156,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:49:43.875Z",
-      "rating": 3.75,
-      "text": "and a happy new year"
-    },
-    {
-      "id": "fdfmqg1u27jkc9got7",
-      "beer": 6,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:50:53.851Z",
-      "rating": 3.25,
-      "text": "electriiiic"
-    },
-    {
-      "id": "fdfmqg1u27jkc9l7l4",
-      "beer": 58,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:54:24.808Z",
-      "rating": 3.75,
-      "text": "hello there"
-    },
-    {
-      "id": "fdfmqg1u27jkc9oy3i",
-      "beer": 102,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T07:57:19.134Z",
-      "rating": 3.75,
-      "text": "good"
-    },
-    {
-      "id": "fdfmqg1u27jkca0v6y",
-      "beer": 21,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T08:06:35.242Z",
-      "rating": 3.5,
-      "text": "I like vice"
-    },
-    {
-      "id": "fdfmqg1u27jkcag8uw",
-      "beer": 39,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T08:18:32.792Z",
-      "rating": 4.25,
-      "text": "IPA lives on in my heart"
-    },
-    {
-      "id": "fdfmqg1u27jkcai1gu",
-      "beer": 126,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T08:19:56.526Z",
-      "rating": 4,
-      "text": "General Kenobi"
-    },
-    {
-      "id": "fdfmqg1u27jkcaj5of",
-      "beer": 30,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T08:20:48.639Z",
-      "rating": 3.75,
-      "text": "plop"
-    },
-    {
-      "id": "fdfmqg1u27jkcameut",
-      "beer": 119,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-08-02T08:23:20.501Z",
-      "rating": 3.75,
-      "text": "dfh"
-    },
-    {
-      "id": "fdfmqg1u27jkcamu6p",
-      "beer": 13,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T08:23:40.369Z",
-      "rating": 4.75,
-      "text": "Movember has come"
-    },
-    {
-      "id": "fdfmqg1wtljkcc4uhx",
-      "beer": 106,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-02T09:05:40.196Z",
-      "rating": 3.5,
-      "text": "A classic"
-    },
-    {
-      "id": "fdfmqg1zsijkcl9tsh",
-      "beer": 71,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T13:21:29.104Z",
-      "rating": 3.5,
-      "text": "better the 2nd time"
-    },
-    {
-      "id": "fdfmqg1ztwjkclbn4f",
-      "beer": 91,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-08-02T13:22:53.774Z",
-      "rating": 2.5,
-      "text": "dead pony"
-    },
-    {
-      "id": "fdfmqg1zu7jkclcmuy",
-      "beer": 156,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T13:23:40.089Z",
-      "rating": 1.75,
-      "text": "here I go again"
-    },
-    {
-      "id": "fdfmqg1zw8jkclgsx1",
-      "beer": 100,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-08-02T13:26:54.564Z",
-      "rating": 4.5,
-      "text": "LA BASE"
-    },
-    {
-      "id": "fdfmqg1zwejkclhwcy",
-      "beer": 4,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-02T13:27:45.681Z",
-      "rating": 3.75,
-      "text": "I actually like pils"
-    },
-    {
-      "id": "fdfmqg1zwmjkclih9j",
-      "beer": 68,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-02T13:28:12.774Z",
-      "rating": 2,
-      "text": "AF"
-    },
-    {
-      "id": "fdfmqg1zytjkcloaod",
-      "beer": 6,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-02T13:32:44.172Z",
-      "rating": 3.25,
-      "text": "I'm electric"
-    },
-    {
-      "id": "fdfmqg1zzujkclqibw",
-      "beer": 6,
-      "user": "fdfmqg1rg4jkayee1f",
-      "createdAt": "2018-08-02T13:34:27.403Z",
-      "rating": 2,
-      "text": "and again"
-    },
-    {
-      "id": "fdfmqg1zzujkclriav",
-      "beer": 101,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T13:35:14.023Z",
-      "rating": 2.75,
-      "text": "RIP in peace 💁🏻‍♀️"
-    },
-    {
-      "id": "fdfmqg1zzujkcls527",
-      "beer": 14,
-      "user": "fdfmqg1lkpjk9olj8z",
-      "createdAt": "2018-08-02T13:35:43.519Z",
-      "rating": 3.25,
-      "text": "test"
-    },
-    {
-      "id": "jumx2k3jl7ximm7",
-      "beer": 65,
-      "user": "jumx2k3jl7xhh87",
-      "createdAt": "2018-08-24T11:45:06.559Z",
-      "rating": 4.75,
-      "text": "Nice !"
-    },
-    {
-      "id": "17lnx92nmjldmtk05",
-      "beer": 120,
-      "user": "17lnx92nmjldcpwxm",
-      "createdAt": "2018-08-28T11:32:17.670Z",
-      "rating": 3.5,
-      "text": "hghghghgh"
-    },
-    {
-      "id": "17lnx92nmjldrw9ln",
-      "beer": 91,
-      "user": "17lnx92nmjldcpwxm",
-      "createdAt": "2018-08-28T13:54:22.235Z",
-      "rating": 3,
-      "text": ""
-    },
-    {
-      "id": "17lnx92nmjlds0tjk",
-      "beer": 150,
-      "user": "17lnx92nmjldcpwxm",
-      "createdAt": "2018-08-28T13:57:54.704Z",
-      "rating": 3,
-      "text": "OLAAAAAH"
-    },
-    {
-      "id": "d1w4z3jlhp35be",
-      "beer": 26,
-      "user": "3mwd5y0jlbx8nkl",
-      "createdAt": "2018-08-31T07:46:49.130Z",
-      "rating": 5,
-      "text": ""
-    },
-    {
-      "id": "9weaj116hjlgqehem",
-      "beer": 80,
-      "user": "fdfmqg16a9jk2ko0lr",
-      "createdAt": "2018-08-30T15:35:51.454Z",
-      "rating": 0,
-      "text": ""
-    },
-    {
       "id": "9weaj116hjlhndydq",
       "beer": 106,
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-08-31T06:59:14.126Z",
       "rating": 4,
-      "text": "fdf"
+      "text": "lorem"
     },
     {
       "id": "9weaj3c3jlhra452",
@@ -586,7 +58,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-08-31T08:48:13.429Z",
       "rating": 4,
-      "text": "plop"
+      "text": "ipsum"
     },
     {
       "id": "9weaj506jlhxkvbw",
@@ -594,7 +66,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-08-31T11:44:32.923Z",
       "rating": 3,
-      "text": "plop"
+      "text": "dolor"
     },
     {
       "id": "1jdr4248djmum8f0m",
@@ -602,7 +74,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-10-04T13:27:38.757Z",
       "rating": 3,
-      "text": "Hellooooo"
+      "text": "sit"
     },
     {
       "id": "1jdr4248djmunsb69",
@@ -610,7 +82,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-10-04T14:11:06.513Z",
       "rating": 4,
-      "text": "Hello there"
+      "text": "amet"
     },
     {
       "id": "1jdr4248djmunudcc",
@@ -618,7 +90,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-10-04T14:12:42.636Z",
       "rating": 4,
-      "text": "coucou"
+      "text": "consectetur"
     },
     {
       "id": "1jdr4248djmunw09r",
@@ -626,7 +98,7 @@
       "user": "fdfmqg1lkpjk9olj8z",
       "createdAt": "2018-10-04T14:13:59.007Z",
       "rating": 1,
-      "text": "hurr durr"
+      "text": "adipiscing"
     },
     {
       "id": "1jdr4248djmuog079",
@@ -634,7 +106,7 @@
       "user": "fdfmqg16a9jk2ko0lr",
       "createdAt": "2018-10-04T14:29:32.037Z",
       "rating": 4,
-      "text": "koukou"
+      "text": "elit"
     }
   ],
   "beers": [

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SNACK_LIFETIME } from '../../constants.js'
 import {
@@ -8,6 +9,12 @@ import {
   SnackDismiss,
 } from '../styled/globalStyles.js'
 import { clearSnack } from '../../store.js'
+import { SnackType } from '../../types.js'
+
+const propTypes = {
+  snack: SnackType,
+  removeSnack: PropTypes.func.isRequired,
+}
 
 class _Snack extends Component {
   render() {
@@ -29,6 +36,8 @@ class _Snack extends Component {
     )
   }
 }
+
+_Snack.propTypes = propTypes
 
 export const Snack = connect(
   null,

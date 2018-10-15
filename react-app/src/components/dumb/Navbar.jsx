@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -9,6 +10,10 @@ import {
 } from '../styled/globalStyles.js'
 import { Burger } from './Burger'
 import { logout } from '../../store.js'
+
+const propTypes = {
+  logOut: PropTypes.func.isRequired,
+}
 
 class _Navbar extends Component {
   state = {
@@ -25,7 +30,7 @@ class _Navbar extends Component {
 
   render() {
     const { opened } = this.state
-    const { isLoggedIn, logOut, user } = this.props
+    const { isLoggedIn, user } = this.props
     return isLoggedIn ? (
       <NavbarContainer>
         <Burger opened={opened} onClick={this.toggleNav} />
@@ -34,12 +39,14 @@ class _Navbar extends Component {
           <Link to={`/user/${user.id}`}>Profile</Link>
         </FlexRow>
         <FlexRow open={opened}>
-          <LinkStyledButton onClick={logOut}>Log Out</LinkStyledButton>
+          <LinkStyledButton onClick={this.logOut}>Log Out</LinkStyledButton>
         </FlexRow>
       </NavbarContainer>
     ) : null
   }
 }
+
+_Navbar.propTypes = propTypes
 
 export const Navbar = compose(
   withRouter,

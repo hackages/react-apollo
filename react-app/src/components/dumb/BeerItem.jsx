@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   StyledLink,
@@ -9,16 +8,12 @@ import {
   StyledButton,
 } from '../styled/globalStyles.js'
 import { CheckinModal } from '../layouts/CheckinModal.jsx'
+import { BeerType } from '../../types.js'
 
+const propTypes = {
+  beer: BeerType,
+}
 class _BeerItem extends PureComponent {
-  static propTypes = {
-    beer: PropTypes.shape({
-      name: PropTypes.string,
-      tagline: PropTypes.string,
-      id: PropTypes.number,
-    }),
-  }
-
   state = {
     showModal: false,
   }
@@ -67,6 +62,8 @@ class _BeerItem extends PureComponent {
     )
   }
 }
+
+_BeerItem.propTypes = propTypes
 
 export const BeerItem = connect(({ isLoggedIn }) => ({
   isLoggedIn,
