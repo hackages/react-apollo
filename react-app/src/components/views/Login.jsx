@@ -37,24 +37,32 @@ class _Login extends Component {
     const { login, username, password } = this.state
     const { history, logUserIn, snack } = this.props
     if (!login) {
-      await createUser({
+      try {
+        await createUser({
+          variables: {
+            username,
+            password,
+          },
+        })
+      } catch (err) {
+        snack([err.message, 'error'])
+      }
+    }
+    try {
+      const {
+        signInUser: { token, user },
+      } = (await signInUser({
         variables: {
           username,
           password,
         },
-      })
+      })).data
+      logUserIn({ token, user })
+      snack([`Welcome ${username}`, 'success'])
+      history.push('/feed')
+    } catch (err) {
+      snack([err.message, 'error'])
     }
-    const {
-      signInUser: { token, user },
-    } = (await signInUser({
-      variables: {
-        username,
-        password,
-      },
-    })).data
-    logUserIn({ token, user })
-    snack([`Welcome ${login && 'back '} ${username}`, 'success'])
-    history.push('/feed')
   }
 
   toggleLogin = () => this.setState(({ login }) => ({ login: !login }))
