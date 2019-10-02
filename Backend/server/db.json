@@ -41,6 +41,24 @@
       "username": "Céline",
       "password": "$2a$08$pXn0/vHGTbgFwCx08XiVAuk3Ruymw6l2pSQrUCwhAIhalvuiw0TDC",
       "createdAt": "2018-08-28T06:49:31.686Z"
+    },
+    {
+      "id": "21axyajwx2k1957r0z",
+      "username": "tinencor@gmail.com",
+      "password": "$2a$08$rRfHNlnVcROMwGIDJOLU6OtlOWNV8gWez87S4PiinTSt7kunmQCzm",
+      "createdAt": "2019-10-02T10:43:39.581Z",
+      "friends": [
+        "fdfmqg16a9jk2ko0lr"
+      ]
+    },
+    {
+      "id": "21axyajwx2k19584d3",
+      "username": "coucou@yopmail.com",
+      "password": "$2a$08$l8SZyA5SbdZ/vsllS.JuVefGEaA7yFoF1jZ5J7pKjnZDqI5GG5UAe",
+      "createdAt": "2019-10-02T10:43:56.848Z",
+      "friends": [
+        "fdfmqg16a9jk2ko0lr"
+      ]
     }
   ],
   "check_ins": [
