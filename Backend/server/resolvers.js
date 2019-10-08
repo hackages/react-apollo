@@ -15,7 +15,7 @@ const queries = {
     checkin: (_, { id }, { dataSources: { dataAPI } }) =>
       dataAPI.getCheckIn(id),
     userFeed: (_, { limit = 999 }, { dataSources: { dataAPI }, user }) =>
-      dataAPI.getUserFeed(user, limit)
+      dataAPI.getUserFeed(user, limit),
   },
   Beer: {
     average: ({ id }, _, { dataSources: { dataAPI } }) =>
@@ -24,7 +24,7 @@ const queries = {
       { id: beer },
       { limit: _limit = 999 },
       { dataSources: { dataAPI } }
-    ) => dataAPI.getCheckIns({ _limit, beer })
+    ) => dataAPI.getCheckIns({ _limit, beer }),
   },
   User: {
     check_ins: (
@@ -38,18 +38,17 @@ const queries = {
       { id: paramId },
       _,
       { dataSources: { dataAPI }, user: { id: ownId } }
-    ) => dataAPI.getBeerHistory(paramId || ownId)
+    ) => dataAPI.getBeerHistory(paramId || ownId),
   },
   CheckIn: {
     user: ({ user }, _, { dataSources: { dataAPI } }) => dataAPI.getUser(user),
     beer: async ({ beer }, _, { dataSources: { dataAPI } }) =>
-      dataAPI.getBeer(beer)
-  }
+      dataAPI.getBeer(beer),
+  },
 };
 
 // isn't that a nice, useful function?
-const INTO_THE_VOID = () => {
-  console.log('INTO THE VOID WITH YOU!', ...args);
+const INTO_THE_VOID = () => console.log('INTO THE VOID WITH YOU!', ...args);
 
 const mutations = {
   Mutation: {
@@ -65,17 +64,17 @@ const mutations = {
       _,
       { beer, rating, text },
       { dataSources: { dataAPI }, user }
-    ) => (user ? INTO_THE_VOID(beer, user, rating, text) : {})
+    ) => (user ? INTO_THE_VOID(beer, user, rating, text) : {}),
     // I return an empty object if the user is not logged in
-  }
+  },
 };
 
 const subscriptions = {
   Subscription: {
     checkinAdded: {
-      subscribe: async () => pubsub.asyncIterator([CHECKIN_ADDED])
-    }
-  }
+      subscribe: async () => pubsub.asyncIterator([CHECKIN_ADDED]),
+    },
+  },
 };
 
 module.exports = { ...queries, ...mutations, ...subscriptions };
