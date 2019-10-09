@@ -17,7 +17,7 @@ const defaultProps = {
 }
 
 export const BeerProvider = ({ id, detailed, children }) => (
-  <Query query={getBeer} variables={{ id: id || random(), detailed }}>
+  <Query query={getBeer} variables={{ id: Number(id || random()), detailed }}>
     {({ loading, error, data }) =>
       !loading && !error && children({ loading, error, beer: data.beer })
     }
