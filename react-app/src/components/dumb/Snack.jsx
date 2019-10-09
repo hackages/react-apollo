@@ -9,7 +9,7 @@ import {
   SnackDismiss,
 } from '../styled/globalStyles.js'
 import { clearSnack } from '../../store.js'
-import { SnackType } from '../../types.js'
+import { SnackType } from '../../types'
 
 const propTypes = {
   snack: SnackType,

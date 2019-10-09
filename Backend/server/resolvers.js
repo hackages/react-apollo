@@ -48,7 +48,7 @@ const queries = {
 };
 
 // isn't that a nice, useful function?
-const INTO_THE_VOID = () => console.log('INTO THE VOID WITH YOU!', ...args);
+const INTO_THE_VOID = (...args) => console.log('INTO THE VOID WITH YOU!', ...args);
 
 const mutations = {
   Mutation: {
