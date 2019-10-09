@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx nodemon -e js ./server/index.js"
+  },
+  "dependencies": {
+    "apollo-datasource-rest": "2.0.0-rc.8",
+    "apollo-server": "^2.9.4",
+    "apollo-server-express": "^2.9.4",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "ramda": "^0.26.1",
+    "subscriptions-transport-ws": "^0.9.16",
+    "uniqid": "^5.0.3"
+  },
+  "devDependencies": {
+    "json-server": "^0.15.1",
+    "nodemon": "^1.19.3"
+  }
+}

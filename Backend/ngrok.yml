@@ -1,0 +1,11 @@
+authtoken: 76JWRCC9V5bnisZTFAMoW_6DQ6r6zC2acVM25de5iFx
+tunnels:
+  db:
+    addr: 1234
+    proto: http
+  apollo:
+    addr: 4000
+    proto: http
+  apollo-subs:
+    addr: 4001
+    proto: http
