@@ -8,7 +8,7 @@ import {
   StyledButton,
 } from '../styled/globalStyles.js'
 import { CheckinModal } from '../layouts/CheckinModal.jsx'
-import { BeerType } from '../../types.js'
+import { BeerType } from '../../types'
 
 const propTypes = {
   beer: BeerType,
