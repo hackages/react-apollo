@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -15,35 +15,28 @@ const propTypes = {
   logOut: PropTypes.func.isRequired,
 }
 
-class _Navbar extends Component {
-  state = {
-    opened: false,
-  }
+const _Navbar = ({ logOut, isLoggedIn, user, history }) => {
+  const [opened, setopened] = useState(false)
 
-  logOut = () => {
-    const { history, logOut } = this.props
+  const logUserOut = () => {
     logOut()
     history.push('/')
   }
 
-  toggleNav = () => this.setState(({ opened }) => ({ opened: !opened }))
+  const toggleNav = () => setopened(opened => !opened)
 
-  render() {
-    const { opened } = this.state
-    const { isLoggedIn, user } = this.props
-    return isLoggedIn ? (
-      <NavbarContainer>
-        <Burger opened={opened} onClick={this.toggleNav} />
-        <FlexRow open={opened}>
-          <Link to="/feed">Home</Link>
-          <Link to={`/user/${user.id}`}>Profile</Link>
-        </FlexRow>
-        <FlexRow open={opened}>
-          <LinkStyledButton onClick={this.logOut}>Log Out</LinkStyledButton>
-        </FlexRow>
-      </NavbarContainer>
-    ) : null
-  }
+  return isLoggedIn ? (
+    <NavbarContainer>
+      <Burger opened={opened} onClick={toggleNav} />
+      <FlexRow open={opened}>
+        <Link to="/feed">Home</Link>
+        <Link to={`/user/${user.id}`}>Profile</Link>
+      </FlexRow>
+      <FlexRow open={opened}>
+        <LinkStyledButton onClick={logUserOut}>Log Out</LinkStyledButton>
+      </FlexRow>
+    </NavbarContainer>
+  ) : null
 }
 
 _Navbar.propTypes = propTypes

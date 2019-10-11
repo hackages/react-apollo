@@ -9,11 +9,7 @@ const propTypes = {
   big: PropTypes.bool,
 }
 
-const defaultProps = {
-  big: false,
-}
-
-export const Avatar = ({ id, big }) => {
+export const Avatar = ({ id, big = false }) => {
   const background = `url(${getRandomPic(id)}) no-repeat center/contain`
 
   return (
@@ -24,4 +20,3 @@ export const Avatar = ({ id, big }) => {
 }
 
 Avatar.propTypes = propTypes
-Avatar.defaultProps = defaultProps

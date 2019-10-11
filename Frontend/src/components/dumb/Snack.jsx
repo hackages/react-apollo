@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import { connect } from 'react-redux'
 import { SNACK_LIFETIME } from '../../constants.js'
 import {
@@ -9,35 +8,23 @@ import {
   SnackDismiss,
 } from '../styled/globalStyles.js'
 import { clearSnack } from '../../store.js'
-import { SnackType } from '../../types'
 
-const propTypes = {
-  snack: SnackType,
-  removeSnack: PropTypes.func.isRequired,
+const _Snack = ({ snack, removeSnack }) => {
+  const duration = SNACK_LIFETIME
+
+  return (
+    <SnackContainer>
+      <SnackContent>
+        <h4>{snack.type}</h4>
+        <p>{snack.message}</p>
+      </SnackContent>
+      <SnackDismiss onClick={() => removeSnack(snack.id)}>DISMISS</SnackDismiss>
+      <SnackLoader duration={duration}>
+        <div> </div>
+      </SnackLoader>
+    </SnackContainer>
+  )
 }
-
-class _Snack extends Component {
-  render() {
-    const { snack, removeSnack } = this.props
-    const duration = SNACK_LIFETIME
-    return (
-      <SnackContainer>
-        <SnackContent>
-          <h4>{snack.type}</h4>
-          <p>{snack.message}</p>
-        </SnackContent>
-        <SnackDismiss onClick={() => removeSnack(snack.id)}>
-          DISMISS
-        </SnackDismiss>
-        <SnackLoader duration={duration}>
-          <div> </div>
-        </SnackLoader>
-      </SnackContainer>
-    )
-  }
-}
-
-_Snack.propTypes = propTypes
 
 export const Snack = connect(
   null,

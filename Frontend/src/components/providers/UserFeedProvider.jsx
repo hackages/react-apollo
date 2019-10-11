@@ -9,11 +9,7 @@ const propTypes = {
   limit: PropTypes.number,
 }
 
-const defaultProps = {
-  limit: 18,
-}
-
-const _UserFeedProvider = ({ limit, user, children }) => {
+const _UserFeedProvider = ({ limit = 18, user, children }) => {
   return (
     <Query query={getUserFeed} variables={{ limit }}>
       {({ subscribeToMore, loading, error, data }) => {
@@ -59,7 +55,6 @@ const _UserFeedProvider = ({ limit, user, children }) => {
 }
 
 _UserFeedProvider.propTypes = propTypes
-_UserFeedProvider.defaultProps = defaultProps
 
 export const UserFeedProvider = connect(state => ({
   user: getUser(state),

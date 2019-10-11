@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import { withRouter } from 'react-router'
@@ -20,22 +20,16 @@ const propTypes = {
   snack: PropTypes.func.isRequired,
 }
 
-class _Login extends Component {
-  state = {
-    login: false,
-    username: '',
-    password: '',
+const _Login = ({ history, logUserIn, snack }) => {
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
+  const [login, setlogin] = useState(false)
+
+  const updateFields = ({ target: { value, name } }) => {
+    name === 'password' ? setpassword(value) : setusername(value)
   }
 
-  updateFields = ({ target: { value, name } }) => {
-    this.setState(state => ({
-      [name]: value,
-    }))
-  }
-
-  confirm = (signInUser, createUser) => async () => {
-    const { login, username, password } = this.state
-    const { history, logUserIn, snack } = this.props
+  const confirm = (signInUser, createUser) => async () => {
     if (!login) {
       try {
         await createUser({
@@ -65,48 +59,45 @@ class _Login extends Component {
     }
   }
 
-  toggleLogin = () => this.setState(({ login }) => ({ login: !login }))
+  const toggleLogin = () => setlogin(login => !login)
 
-  render() {
-    const { login, username, password } = this.state
-    return (
-      <Mutation mutation={signInUser}>
-        {signInUser => (
-          <Mutation mutation={createUser}>
-            {createUser => (
-              <LoginContainer>
-                <WhiteTitle>{login ? 'Login' : 'Sign Up'}</WhiteTitle>
-                <Column>
-                  <LabelledInput
-                    name="username"
-                    type="text"
-                    label="Your username"
-                    value={username}
-                    onChange={this.updateFields}
-                  />
-                  <LabelledInput
-                    name="password"
-                    type="password"
-                    value={password}
-                    label="Password"
-                    onChange={this.updateFields}
-                  />
-                  <LoginButton onClick={this.confirm(signInUser, createUser)}>
-                    {login ? 'login' : 'create account'}
-                  </LoginButton>
-                  <LinkButton onClick={this.toggleLogin}>
-                    {login
-                      ? 'need to create an account?'
-                      : 'already have an account?'}
-                  </LinkButton>
-                </Column>
-              </LoginContainer>
-            )}
-          </Mutation>
-        )}
-      </Mutation>
-    )
-  }
+  return (
+    <Mutation mutation={signInUser}>
+      {signInUser => (
+        <Mutation mutation={createUser}>
+          {createUser => (
+            <LoginContainer>
+              <WhiteTitle>{login ? 'Login' : 'Sign Up'}</WhiteTitle>
+              <Column>
+                <LabelledInput
+                  name="username"
+                  type="text"
+                  label="Your username"
+                  value={username}
+                  onChange={updateFields}
+                />
+                <LabelledInput
+                  name="password"
+                  type="password"
+                  value={password}
+                  label="Password"
+                  onChange={updateFields}
+                />
+                <LoginButton onClick={confirm(signInUser, createUser)}>
+                  {login ? 'login' : 'create account'}
+                </LoginButton>
+                <LinkButton onClick={toggleLogin}>
+                  {login
+                    ? 'need to create an account?'
+                    : 'already have an account?'}
+                </LinkButton>
+              </Column>
+            </LoginContainer>
+          )}
+        </Mutation>
+      )}
+    </Mutation>
+  )
 }
 
 _Login.propTypes = propTypes

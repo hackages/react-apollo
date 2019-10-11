@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router'
 import { connect } from 'react-redux'
@@ -27,42 +27,39 @@ const propTypes = {
   snack: PropTypes.func.isRequired,
 }
 
-class _App extends Component {
-  componentDidUpdate = prevProps => {
-    const { data } = this.props
+const _App = ({ data, isLoggedIn, logUserIn, snack }) => {
+  const [prevLoading, setprevLoading] = useState(true)
+
+  useEffect(() => {
     if (data) {
       const { loading, error, user } = data
-      if (!loading && !error && !loading && prevProps.data.loading) {
-        this.onFetch(user)
+      if (!loading && !error && !isLoggedIn && prevLoading) {
+        onFetch(user)
+        setprevLoading(prevLoading => !prevLoading)
       }
     }
-  }
+  }, [data])
 
-  onFetch = user => {
-    const { logUserIn, snack } = this.props
+  const onFetch = user => {
     logUserIn({ user, token: localStorage.getItem('token') })
     snack([greet(user.username), 'success'])
   }
 
-  render() {
-    const { data } = this.props
-
-    return data && data.loading ? null : (
-      <div id="app">
-        <Fragment>
-          <Navbar />
-          <Switch>
-            <Route path="/login" component={Login} />
-            <ProtectedRoute path="/feed" component={Feed} />
-            <ProtectedRoute path="/user/:id" component={UserDetails} />
-            <ProtectedRoute path="/beer/:id" component={BeerDetails} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </Fragment>
-        <Snacks />
-      </div>
-    )
-  }
+  return data && data.loading ? null : (
+    <div id="app">
+      <Fragment>
+        <Navbar />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <ProtectedRoute path="/feed" component={Feed} />
+          <ProtectedRoute path="/user/:id" component={UserDetails} />
+          <ProtectedRoute path="/beer/:id" component={BeerDetails} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Fragment>
+      <Snacks />
+    </div>
+  )
 }
 
 _App.propTypes = propTypes
