@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Mutation } from 'react-apollo'
+import { useMutation } from 'react-apollo'
 import { withRouter } from 'react-router'
 import { createUser, signInUser } from '../../database/queries'
 import { compose } from 'redux'
@@ -25,14 +25,17 @@ const _Login = ({ history, logUserIn, snack }) => {
   const [password, setpassword] = useState('')
   const [login, setlogin] = useState(false)
 
+  const [createUserM] = useMutation(createUser)
+  const [signInUserM] = useMutation(signInUser)
+
   const updateFields = ({ target: { value, name } }) => {
     name === 'password' ? setpassword(value) : setusername(value)
   }
 
-  const confirm = (signInUser, createUser) => async () => {
+  const confirm = () => async () => {
     if (!login) {
       try {
-        await createUser({
+        await createUserM({
           variables: {
             username,
             password,
@@ -45,7 +48,7 @@ const _Login = ({ history, logUserIn, snack }) => {
     try {
       const {
         signInUser: { token, user },
-      } = (await signInUser({
+      } = (await signInUserM({
         variables: {
           username,
           password,
@@ -62,41 +65,31 @@ const _Login = ({ history, logUserIn, snack }) => {
   const toggleLogin = () => setlogin(login => !login)
 
   return (
-    <Mutation mutation={signInUser}>
-      {signInUser => (
-        <Mutation mutation={createUser}>
-          {createUser => (
-            <LoginContainer>
-              <WhiteTitle>{login ? 'Login' : 'Sign Up'}</WhiteTitle>
-              <Column>
-                <LabelledInput
-                  name="username"
-                  type="text"
-                  label="Your username"
-                  value={username}
-                  onChange={updateFields}
-                />
-                <LabelledInput
-                  name="password"
-                  type="password"
-                  value={password}
-                  label="Password"
-                  onChange={updateFields}
-                />
-                <LoginButton onClick={confirm(signInUser, createUser)}>
-                  {login ? 'login' : 'create account'}
-                </LoginButton>
-                <LinkButton onClick={toggleLogin}>
-                  {login
-                    ? 'need to create an account?'
-                    : 'already have an account?'}
-                </LinkButton>
-              </Column>
-            </LoginContainer>
-          )}
-        </Mutation>
-      )}
-    </Mutation>
+    <LoginContainer>
+      <WhiteTitle>{login ? 'Login' : 'Sign Up'}</WhiteTitle>
+      <Column>
+        <LabelledInput
+          name="username"
+          type="text"
+          label="Your username"
+          value={username}
+          onChange={updateFields}
+        />
+        <LabelledInput
+          name="password"
+          type="password"
+          value={password}
+          label="Password"
+          onChange={updateFields}
+        />
+        <LoginButton onClick={confirm()}>
+          {login ? 'login' : 'create account'}
+        </LoginButton>
+        <LinkButton onClick={toggleLogin}>
+          {login ? 'need to create an account?' : 'already have an account?'}
+        </LinkButton>
+      </Column>
+    </LoginContainer>
   )
 }
 

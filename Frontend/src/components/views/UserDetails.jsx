@@ -17,10 +17,27 @@ import { ago } from '../../utils'
 import { CheckinsList } from '../containers/CheckinsList'
 import { UserSummary } from '../dumb/UserSummary'
 import { setUserInfo, snack } from '../../store'
-import { Mutation } from 'react-apollo'
+import { useMutation } from 'react-apollo'
 import { unfollow, follow } from '../../database/queries'
 
 const _UserDetails = ({ isFriends, isSelf, id, snack, setUserInfo }) => {
+  const [toggleFollowM] = useMutation(isFriends ? unfollow : follow)
+
+  const toggleFollow = async vars => {
+    const { data, errors } = await toggleFollowM(vars)
+
+    if (errors) {
+      snack([`Wow`, 'error'])
+    } else if (data) {
+      const { addFriend, removeFriend } = data
+      setUserInfo(addFriend || removeFriend)
+      snack([
+        !isFriends ? 'Made a new friend 😃' : `You're no longer friends 😿`,
+        'success',
+      ])
+    }
+  }
+
   return (
     <div>
       <UserProvider detailed history id={id}>
@@ -42,30 +59,13 @@ const _UserDetails = ({ isFriends, isSelf, id, snack, setUserInfo }) => {
                       </span>
                     </h3>
                   ) : (
-                    <Mutation
-                      mutation={isFriends ? unfollow : follow}
-                      onCompleted={({ addFriend, removeFriend }) => {
-                        setUserInfo(addFriend || removeFriend)
-                        snack([
-                          !isFriends
-                            ? 'Made a new friend 😃'
-                            : `You're no longer friends 😿`,
-                          'success',
-                        ])
-                      }}
+                    <FollowButton
+                      onClick={() => toggleFollow({ variables: { id } })}
+                      isFollowed={isFriends}
                     >
-                      {mutate => (
-                        <FollowButton
-                          onClick={() => {
-                            mutate({ variables: { id } })
-                          }}
-                          isFollowed={isFriends}
-                        >
-                          {' '}
-                          {isFriends ? 'Unfollow' : 'Follow'}{' '}
-                        </FollowButton>
-                      )}
-                    </Mutation>
+                      {' '}
+                      {isFriends ? 'Unfollow' : 'Follow'}{' '}
+                    </FollowButton>
                   )}
                 </TextHeaderContainer>
               </HeaderContainer>
