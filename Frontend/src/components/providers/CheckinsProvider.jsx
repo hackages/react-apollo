@@ -1,5 +1,4 @@
-import React from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 import { map, prop, dropLast } from 'ramda'
 import {
   getLatestCheckIns,
@@ -13,44 +12,43 @@ export const CheckinsProvider = ({
   limit = 12,
   children,
 }) => {
+  const { subscribeToMore, loading, error, data } = useQuery(
+    getLatestCheckIns,
+    { variables: { onlyBeers, limit } }
+  )
+  const checkins = data && data.checkins ? data.checkins : []
+  const beers = loading ? [] : map(prop('beer'))(checkins)
+
   return (
-    <Query query={getLatestCheckIns} variables={{ onlyBeers, limit }}>
-      {({ subscribeToMore, loading, error, data }) => {
-        const checkins = data && data.checkins ? data.checkins : []
-        const beers = loading ? [] : map(prop('beer'))(checkins)
-        return (
-          !loading &&
-          children({
-            loading,
-            error,
-            checkins,
-            beers,
-            subscribeToMore: () =>
-              subscribeToMore({
-                document: checkinSubscription,
-                variables: {
-                  onlyBeers,
-                },
-                updateQuery: (
-                  { checkins: received },
-                  {
-                    subscriptionData: {
-                      data: { checkinAdded },
-                    },
-                  }
-                ) => {
-                  return checkinAdded
-                    ? {
-                        checkins: [checkinAdded, ...dropTail(received)],
-                      }
-                    : {
-                        checkins: received,
-                      }
-                },
-              }),
-          })
-        )
-      }}
-    </Query>
+    !loading &&
+    children({
+      loading,
+      error,
+      checkins,
+      beers,
+      subscribeToMore: () =>
+        subscribeToMore({
+          document: checkinSubscription,
+          variables: {
+            onlyBeers,
+          },
+          updateQuery: (
+            { checkins: received },
+            {
+              subscriptionData: {
+                data: { checkinAdded },
+              },
+            }
+          ) => {
+            return checkinAdded
+              ? {
+                  checkins: [checkinAdded, ...dropTail(received)],
+                }
+              : {
+                  checkins: received,
+                }
+          },
+        }),
+    })
   )
 }
