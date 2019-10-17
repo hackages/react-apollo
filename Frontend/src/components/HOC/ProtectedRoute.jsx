@@ -1,22 +1,29 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { sleep } from '../../utils'
 
-class _ProtectedRoute extends Component {
-  componentDidMount = async () => {
-    const { history } = this.props
-    await sleep(0.2)
-    if (!this.props.isLoggedIn) {
-      history.push('/')
-    }
-  }
+const _ProtectedRoute = ({ history, component, path, isLoggedIn }) => {
+  const isMounted = React.useRef(false)
 
-  render() {
-    const { component, path } = this.props
-    return <Route path={path} component={component} />
-  }
+  useEffect(() => {
+    if (isMounted.current) {
+      async function hello() {
+        await sleep(0.2)
+        if (!isLoggedIn) {
+          history.push('/')
+        }
+      }
+      hello()
+    }
+  }, [isLoggedIn, history])
+
+  useEffect(() => {
+    isMounted.current = true
+  }, [])
+
+  return <Route path={path} component={component} />
 }
 
 export const ProtectedRoute = compose(
