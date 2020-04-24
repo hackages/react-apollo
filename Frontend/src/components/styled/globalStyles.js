@@ -587,6 +587,8 @@ export const Snacks = styled.ul`
   right: 12px;
   list-style: none;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
 
   li {
     transition: all 0.5s;
