@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { sleep } from '../../utils'
+import { useAuth } from '../../store'
 
-const _ProtectedRoute = ({ history, component, path, isLoggedIn }) => {
+const _ProtectedRoute = ({ history, component, path }) => {
+  const { loggedIn } = useAuth()
   const isMounted = React.useRef(false)
 
   useEffect(() => {
     if (isMounted.current) {
       async function hello() {
         await sleep(0.2)
-        if (!isLoggedIn) {
+        if (!loggedIn) {
           history.push('/')
         }
       }
       hello()
     }
-  }, [isLoggedIn, history])
+  }, [loggedIn, history])
 
   useEffect(() => {
     isMounted.current = true
@@ -28,5 +29,4 @@ const _ProtectedRoute = ({ history, component, path, isLoggedIn }) => {
 
 export const ProtectedRoute = compose(
   withRouter,
-  connect(state => ({ isLoggedIn: state.isLoggedIn }))
 )(_ProtectedRoute)

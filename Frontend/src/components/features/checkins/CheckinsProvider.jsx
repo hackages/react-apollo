@@ -3,7 +3,7 @@ import { map, prop, dropLast } from 'ramda'
 import {
   getLatestCheckIns,
   checkinSubscription,
-} from '../../database/queries.js'
+} from '../../../API/queries.js'
 
 const dropTail = dropLast(1)
 
@@ -42,11 +42,11 @@ export const CheckinsProvider = ({
           ) => {
             return checkinAdded
               ? {
-                  checkins: [checkinAdded, ...dropTail(received)],
-                }
+                checkins: [checkinAdded, ...dropTail(received)],
+              }
               : {
-                  checkins: received,
-                }
+                checkins: received,
+              }
           },
         }),
     })

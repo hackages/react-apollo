@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { SNACK_LIFETIME } from '../../constants.js'
 import {
   Snack as SnackContainer,
@@ -7,10 +6,10 @@ import {
   SnackLoader,
   SnackDismiss,
 } from '../styled/globalStyles.js'
-import { clearSnack } from '../../store.js'
+import { useSnack } from '../../store.js'
 
-const _Snack = ({ snack, removeSnack }) => {
-  const duration = SNACK_LIFETIME
+export const Snack = ({ snack }) => {
+  const { removeSnack } = useSnack()
 
   return (
     <SnackContainer>
@@ -19,16 +18,9 @@ const _Snack = ({ snack, removeSnack }) => {
         <p>{snack.message}</p>
       </SnackContent>
       <SnackDismiss onClick={() => removeSnack(snack.id)}>DISMISS</SnackDismiss>
-      <SnackLoader duration={duration}>
+      <SnackLoader duration={SNACK_LIFETIME}>
         <div> </div>
       </SnackLoader>
     </SnackContainer>
   )
 }
-
-export const Snack = connect(
-  null,
-  dispatch => ({
-    removeSnack: payload => dispatch(clearSnack(payload)),
-  })
-)(_Snack)

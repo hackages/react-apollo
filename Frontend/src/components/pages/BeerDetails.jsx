@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from 'react'
+import { withRouter } from 'react-router'
+import { compose } from 'redux'
 import { path } from 'ramda'
-import { BeerProvider } from '../providers/BeerProvider'
+import { CheckinModal } from '../features/checkins/CheckinModal'
+import { BeerProvider } from '../features/beers/BeerProvider'
+import { CheckinItem } from '../core/CheckinItem'
 import {
   ProfileHeader,
   HeaderContainer,
@@ -14,14 +18,9 @@ import {
   SidebarInfosBox,
   InfosBold,
 } from '../styled/globalStyles'
-import { CheckinItem } from '../dumb/CheckinItem'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { snack } from '../../store'
-import { CheckinModal } from '../layouts/CheckinModal'
 
-const _BeerDetails = ({ id }) => {
+const _BeerDetails = (props) => {
+  const id = path(['match', 'params', 'id'], props)
   const [showModal, setshowModal] = useState(false)
   const toggleModal = () => setshowModal(modal => !modal)
 
@@ -98,12 +97,4 @@ const _BeerDetails = ({ id }) => {
 
 export const BeerDetails = compose(
   withRouter,
-  connect(
-    (state, ownProps) => ({
-      id: path(['match', 'params', 'id'], ownProps),
-    }),
-    dispatch => ({
-      snack: payload => dispatch(snack(payload)),
-    })
-  )
 )(_BeerDetails)

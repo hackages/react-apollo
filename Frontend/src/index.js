@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ApolloProvider } from 'react-apollo'
-import { ApolloClient } from 'apollo-client'
+import { ApolloProvider } from '@apollo/react-hooks'
+import ApolloClient from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { setContext } from 'apollo-link-context'
@@ -11,11 +11,10 @@ import { onError } from 'apollo-link-error'
 import { getMainDefinition } from 'apollo-utilities'
 import { BrowserRouter } from 'react-router-dom'
 import { HTTP_URL, WS_URL } from './constants'
-import { Provider } from 'react-redux'
-
 import './index.css'
 import App from './App.jsx'
-import { store } from './store'
+import { typeDefs } from './API/typedefs'
+import { resolvers } from './API/resolvers'
 
 const httpLink = new HttpLink({
   uri: HTTP_URL,
@@ -27,6 +26,9 @@ const wsLink = new WebSocketLink({
   uri: WS_URL,
   options: {
     reconnect: true,
+    connectionParams: {
+      authToken: localStorage.getItem('token') || ''
+    }
   },
 })
 
@@ -37,7 +39,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token,
+      authorization: token || '',
     },
   }
 })
@@ -56,19 +58,34 @@ const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
 })
 
+const cache = new InMemoryCache()
+
+cache.writeData({
+  data: {
+    userInfo: {
+      id: '',
+      username: 'Jon',
+      friends: [],
+      __typename: 'UserInfo',
+    },
+    isLoggedIn: false,
+    snacks: [],
+  }
+})
+
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, queryLink]),
-  cache: new InMemoryCache(),
+  cache,
+  typeDefs,
+  resolvers,
   connectToDevTools: true,
 })
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('root')
 )

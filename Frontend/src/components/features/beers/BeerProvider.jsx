@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useQuery } from 'react-apollo'
-import { getBeer } from '../../database/queries'
+import { getBeer } from '../../../API/queries'
 
-const random = () => Math.round(Math.random() * 160) + ''
+const random = () => Math.floor(Math.random() * 160)
 
 const propTypes = {
   id: PropTypes.string,
@@ -12,13 +12,13 @@ const propTypes = {
 }
 
 const defaultProps = {
-  id: undefined,
   detailed: false,
 }
 
 export const BeerProvider = ({ id, detailed, children }) => {
+  const beerId = useRef(id || random())
   const { data, loading, error } = useQuery(getBeer, {
-    variables: { id: Number(id) || Number(random()), detailed },
+    variables: { id: Number(beerId.current), detailed },
   })
 
   return (
@@ -29,5 +29,4 @@ export const BeerProvider = ({ id, detailed, children }) => {
 }
 
 BeerProvider.propTypes = propTypes
-
 BeerProvider.defaultProps = defaultProps

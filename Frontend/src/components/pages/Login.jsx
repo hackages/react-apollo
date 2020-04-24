@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useMutation } from 'react-apollo'
 import { withRouter } from 'react-router'
-import { createUser, signInUser } from '../../database/queries'
 import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { login, snack } from '../../store'
+import { LabelledInput } from '../core/LabelledInput'
+import { useAuth, useSnack } from '../../store'
 import {
   WhiteTitle,
   LoginContainer,
@@ -13,14 +11,11 @@ import {
   LoginButton,
   LinkButton,
 } from '../styled/globalStyles'
-import { LabelledInput } from '../dumb/LabelledInput'
+import { createUser, signInUser } from '../../API/mutations'
 
-const propTypes = {
-  logUserIn: PropTypes.func.isRequired,
-  snack: PropTypes.func.isRequired,
-}
-
-const _Login = ({ history, logUserIn, snack }) => {
+const _Login = ({ history }) => {
+  const { signIn } = useAuth()
+  const { addSnack } = useSnack()
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
   const [login, setlogin] = useState(false)
@@ -42,7 +37,7 @@ const _Login = ({ history, logUserIn, snack }) => {
           },
         })
       } catch (err) {
-        snack([err.message, 'error'])
+        addSnack(err.message, 'error')
       }
     }
     try {
@@ -54,11 +49,11 @@ const _Login = ({ history, logUserIn, snack }) => {
           password,
         },
       })).data
-      logUserIn({ token, user })
-      snack([`Welcome ${username}`, 'success'])
+      signIn(user, token)
+      addSnack(`Welcome ${username}`)
       history.push('/feed')
     } catch (err) {
-      snack([err.message, 'error'])
+      addSnack(err.message, 'error')
     }
   }
 
@@ -93,15 +88,6 @@ const _Login = ({ history, logUserIn, snack }) => {
   )
 }
 
-_Login.propTypes = propTypes
-
 export const Login = compose(
   withRouter,
-  connect(
-    ({ userInfo }) => ({ userInfo }),
-    dispatch => ({
-      logUserIn: payload => dispatch(login(payload)),
-      snack: payload => dispatch(snack(payload)),
-    })
-  )
 )(_Login)

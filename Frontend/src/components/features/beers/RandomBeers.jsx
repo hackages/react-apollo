@@ -1,8 +1,8 @@
 import React from 'react'
-import { BeerProvider } from '../providers/BeerProvider'
-import { BeerItem } from '../dumb/BeerItem'
-import { BeersContainer } from '../styled/globalStyles'
 import { times } from 'ramda'
+import { BeerProvider } from './BeerProvider'
+import { BeerItem } from '../../core/BeerItem'
+import { BeersContainer } from '../../styled/globalStyles'
 
 export const RandomBeers = () => (
   <BeersContainer>

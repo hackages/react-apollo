@@ -1,5 +1,5 @@
 import { useQuery } from 'react-apollo'
-import { getUser } from '../../database/queries'
+import { getUser } from '../../../API/queries'
 
 export const UserProvider = ({
   children,

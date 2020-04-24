@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import {
   StyledLink,
   ImageContainer,
@@ -7,14 +6,16 @@ import {
   BeerContent,
   StyledButton,
 } from '../styled/globalStyles.js'
-import { CheckinModal } from '../layouts/CheckinModal.jsx'
+import { CheckinModal } from '../features/checkins/CheckinModal.jsx'
 import { BeerType } from '../../types'
+import { useAuth } from '../../store.js'
 
 const propTypes = {
   beer: BeerType,
 }
 
-const _BeerItem = ({ beer, isLoggedIn }) => {
+export const BeerItem = ({ beer }) => {
+  const { loggedIn } = useAuth()
   const [showModal, setshowModal] = useState(false)
 
   const toggleModal = () => setshowModal(showModal => !showModal)
@@ -35,12 +36,10 @@ const _BeerItem = ({ beer, isLoggedIn }) => {
           <h4>{beer.name}</h4>
           <h6>{beer.tagline}</h6>
         </div>
-        {isLoggedIn && (
+        {loggedIn && (
           <div className="footer">
             <StyledLink to={`beer/${beer.id}`}>Details</StyledLink>
-            {true && (
-              <StyledButton onClick={toggleModal}> I'm having it</StyledButton>
-            )}
+            <StyledButton onClick={toggleModal}> I'm having it</StyledButton>
           </div>
         )}
       </BeerContent>
@@ -54,8 +53,4 @@ const _BeerItem = ({ beer, isLoggedIn }) => {
   )
 }
 
-_BeerItem.propTypes = propTypes
-
-export const BeerItem = connect(({ isLoggedIn }) => ({
-  isLoggedIn,
-}))(_BeerItem)
+BeerItem.propTypes = propTypes

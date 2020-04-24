@@ -42,8 +42,7 @@ const queries = {
   },
   CheckIn: {
     user: ({ user }, _, { dataSources: { dataAPI } }) => dataAPI.getUser(user),
-    beer: async ({ beer }, _, { dataSources: { dataAPI } }) =>
-      dataAPI.getBeer(beer)
+    beer: ({ beer }, _, { dataSources: { dataAPI } }) => dataAPI.getBeer(beer)
   }
 };
 
@@ -69,7 +68,9 @@ const mutations = {
 const subscriptions = {
   Subscription: {
     checkinAdded: {
-      subscribe: async () => pubsub.asyncIterator([CHECKIN_ADDED])
+      subscribe: () => {
+        return pubsub.asyncIterator([CHECKIN_ADDED])
+      }
     }
   }
 };

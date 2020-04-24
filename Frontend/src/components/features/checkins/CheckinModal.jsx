@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 import StarRating from 'react-star-rating-component'
-import { connect } from 'react-redux'
-import { Modal } from '../containers/Modal'
-import { StyledForm } from '../styled/globalStyles'
-import hackBeer from '../../assets/img/hackbeer.svg'
-import { snack } from '../../store'
 import { useMutation } from 'react-apollo'
-import { checkIn } from '../../database/queries'
+import { Modal } from '../../core/Modal'
+import { StyledForm } from '../../styled/globalStyles'
+import hackBeer from '../../../assets/img/hackbeer.svg'
+import { checkIn } from '../../../API/mutations'
+import { useSnack } from '../../../store'
 
 const initialState = {
   text: '',
   rating: 0,
 }
 
-const _CheckinModal = ({ snack, beer, showModal, toggleModal = () => {} }) => {
-  const [text, settext] = useState(initialState.text)
-  const [rating, setrating] = useState(initialState.rating)
+export const CheckinModal = ({ beer, showModal, toggleModal = () => { } }) => {
+  const [text, setText] = useState(initialState.text)
+  const [rating, setRating] = useState(initialState.rating)
 
   const [checkInM] = useMutation(checkIn)
+  const { addSnack } = useSnack()
 
   const addCheckIn = async () => {
     const { data, errors } = await checkInM({
@@ -29,19 +29,19 @@ const _CheckinModal = ({ snack, beer, showModal, toggleModal = () => {} }) => {
     })
 
     if (errors) {
-      snack([`Wow`, 'error'])
+      addSnack('Wow', 'error')
       toggleModal()
     } else if (data) {
-      setrating(initialState.rating)
-      settext(initialState.text)
-      snack([`Checked in to ${beer.name}`, 'success'])
+      setRating(initialState.rating)
+      setText(initialState.text)
+      addSnack(`Checked in to ${beer.name}`, 'success')
       toggleModal()
     }
   }
 
-  const rate = rating => setrating(rating)
+  const rate = rating => setRating(rating)
 
-  const changeText = ({ target: { value: text } }) => settext(text)
+  const changeText = ({ target: { value: text } }) => setText(text)
 
   return (
     <Modal
@@ -79,10 +79,3 @@ const _CheckinModal = ({ snack, beer, showModal, toggleModal = () => {} }) => {
     </Modal>
   )
 }
-
-export const CheckinModal = connect(
-  null,
-  dispatch => ({
-    snack: payload => dispatch(snack(payload)),
-  })
-)(_CheckinModal)

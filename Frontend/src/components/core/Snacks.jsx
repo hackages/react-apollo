@@ -1,16 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { Snacks as SnacksContainer } from '../styled/globalStyles'
-import { Snack } from '../dumb/Snack'
-import { SnackType } from '../../types'
+import { Snack } from './Snack'
+import { useSnack } from '../../store'
 
-const propTypes = {
-  snacks: PropTypes.arrayOf(SnackType),
-}
-
-export const _Snacks = ({ snacks }) => {
+export const Snacks = () => {
+  const { snacks } = useSnack()
   return (
     snacks && (
       <SnacksContainer>
@@ -31,9 +26,3 @@ export const _Snacks = ({ snacks }) => {
     )
   )
 }
-
-_Snacks.propTypes = propTypes
-
-export const Snacks = connect(({ snacks }) => ({
-  snacks,
-}))(_Snacks)

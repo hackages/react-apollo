@@ -150,67 +150,8 @@ export const getBeers = gql`
   }
 `
 
-// MUTATIONS
 
-export const follow = gql`
-  mutation Follow($id: ID!) {
-    addFriend(id: $id) {
-      id
-      username
-      friends {
-        id
-        username
-      }
-    }
-  }
-`
 
-export const unfollow = gql`
-  mutation Unfollow($id: ID!) {
-    removeFriend(id: $id) {
-      id
-      username
-      friends {
-        id
-        username
-      }
-    }
-  }
-`
-
-export const checkIn = gql`
-  mutation CheckInMutation($beer: Int!, $rating: Float, $text: String) {
-    createCheckin(beer: $beer, rating: $rating, text: $text) {
-      id
-    }
-  }
-`
-
-export const createUser = gql`
-  mutation CreateUserMutation($username: String!, $password: String!) {
-    createUser(username: $username, password: $password) {
-      id
-      username
-      createdAt
-    }
-  }
-`
-
-export const signInUser = gql`
-  mutation SignInUserMutation($username: String!, $password: String!) {
-    signInUser(username: $username, password: $password) {
-      token
-      user {
-        id
-        username
-        friends {
-          id
-          username
-        }
-      }
-    }
-  }
-`
 
 // SUBSCRIPTIONS
 
@@ -231,6 +172,36 @@ export const checkinSubscription = gql`
       rating @skip(if: $onlyBeers)
       createdAt @skip(if: $onlyBeers)
       text @skip(if: $onlyBeers)
+    }
+  }
+`
+
+// CLIENT
+
+export const isLoggedIn = gql`
+  query GetLoggedIn {
+    isLoggedIn @client
+  }
+`
+
+export const getSnacks = gql`
+  query GetSnacks {
+    snacks @client {
+      message
+      type
+      id
+    }
+  }
+`
+
+export const getUserInfo = gql`
+  query GetUserInfo {
+    userInfo @client {
+      id
+      username
+      friends {
+        id
+      }
     }
   }
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LastBeers } from '../containers/LastBeers'
+import { LastBeers } from '../features/beers/LastBeers'
 import {
   StyledLink,
   HomeContainer,

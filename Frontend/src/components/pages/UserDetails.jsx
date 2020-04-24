@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { connect } from 'react-redux'
 import { contains, path } from 'ramda'
-import { UserProvider } from '../providers/UserProvider'
+import { useMutation } from 'react-apollo'
+import { UserProvider } from '../features/users/UserProvider'
+import { CheckinsList } from '../features/checkins/CheckinsList'
+import { UserSummary } from '../core/UserSummary'
+import { Avatar } from '../core/Avatar'
 import {
   ProfileHeader,
   Row,
@@ -12,29 +15,30 @@ import {
   HeaderUsername,
   FollowButton,
 } from '../styled/globalStyles'
-import { Avatar } from '../dumb/Avatar'
 import { ago } from '../../utils'
-import { CheckinsList } from '../containers/CheckinsList'
-import { UserSummary } from '../dumb/UserSummary'
-import { setUserInfo, snack } from '../../store'
-import { useMutation } from 'react-apollo'
-import { unfollow, follow } from '../../database/queries'
+import { useSnack, useAuth } from '../../store'
+import { unfollow, follow } from '../../API/mutations'
 
-const _UserDetails = ({ isFriends, isSelf, id, snack, setUserInfo }) => {
+const _UserDetails = (props) => {
+  const { updateUser, userInfo } = useAuth()
+  const {addSnack} = useSnack()
+  const id =  path(['match', 'params', 'id'], props)
+  const isFriends = contains(
+    id,
+    userInfo.friends.map(({id}) => id)
+    )
+  const isSelf = id === userInfo.id
   const [toggleFollowM] = useMutation(isFriends ? unfollow : follow)
 
   const toggleFollow = async vars => {
     const { data, errors } = await toggleFollowM(vars)
 
     if (errors) {
-      snack([`Wow`, 'error'])
+      addSnack(`Wow`, 'error')
     } else if (data) {
       const { addFriend, removeFriend } = data
-      setUserInfo(addFriend || removeFriend)
-      snack([
-        !isFriends ? 'Made a new friend 😃' : `You're no longer friends 😿`,
-        'success',
-      ])
+      updateUser(addFriend || removeFriend)
+      addSnack(!isFriends ? 'Made a new friend 😃' : `You're no longer friends 😿`)
     }
   }
 
@@ -82,19 +86,5 @@ const _UserDetails = ({ isFriends, isSelf, id, snack, setUserInfo }) => {
 }
 
 export const UserDetails = compose(
-  withRouter,
-  connect(
-    ({ userInfo }, ownProps) => ({
-      id: path(['match', 'params', 'id'], ownProps),
-      isFriends: contains(
-        path(['match', 'params', 'id'], ownProps),
-        userInfo.friends
-      ),
-      isSelf: path(['match', 'params', 'id'], ownProps) === userInfo.id,
-    }),
-    dispatch => ({
-      snack: payload => dispatch(snack(payload)),
-      setUserInfo: payload => dispatch(setUserInfo(payload)),
-    })
-  )
+  withRouter
 )(_UserDetails)

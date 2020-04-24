@@ -187,6 +187,7 @@ class DataAPI extends RESTDataSource {
   async createCheckin(beer, { id: user }, rating, text) {
     const id = uniqid();
     const newCheckin = { id, beer, user, createdAt: new Date(), rating, text };
+    console.log('new checkin', newCheckin)
     pubsub.publish(CHECKIN_ADDED, {
       mutation: 'CREATED',
       checkinAdded: newCheckin

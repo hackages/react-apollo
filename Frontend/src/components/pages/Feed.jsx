@@ -1,7 +1,7 @@
 import React from 'react'
-import { RandomBeers } from '../containers/RandomBeers'
-import { UserFeedProvider } from '../providers/UserFeedProvider'
-import { CheckinsList } from '../containers/CheckinsList'
+import { RandomBeers } from '../features/beers/RandomBeers'
+import { UserFeedProvider } from '../features/users/UserFeedProvider'
+import { CheckinsList } from '../features/checkins/CheckinsList'
 
 export const Feed = () => (
   <div>

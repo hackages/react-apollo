@@ -1,49 +1,48 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router'
-import { connect } from 'react-redux'
-import './App.css'
-import { graphql } from 'react-apollo'
-import { Navbar } from './components/dumb/Navbar'
-import { Home } from './components/views/Home'
-import { Login } from './components/views/Login'
-import { Feed } from './components/views/Feed'
-import { getUser } from './database/queries'
-import { snack, login } from './store'
-import { greet } from './utils'
 import { compose } from 'redux'
-import { Snacks } from './components/containers/Snacks'
-import { UserDetails } from './components/views/UserDetails'
-import { ProtectedRoute } from './components/HOC/ProtectedRoute'
-import { BeerDetails } from './components/views/BeerDetails'
+import { graphql } from 'react-apollo'
+import { Home } from './components/pages/Home'
+import { Login } from './components/pages/Login'
+import { Feed } from './components/pages/Feed'
+import { UserDetails } from './components/pages/UserDetails'
+import { BeerDetails } from './components/pages/BeerDetails'
+import { Navbar } from './components/core/Navbar'
+import { ProtectedRoute } from './components/core/ProtectedRoute'
+import { Snacks } from './components/core/Snacks'
+import { getUser } from './API/queries'
+import { useSnack, useAuth } from './store'
+import { greet } from './utils'
 import { UserType } from './types'
+import './App.css'
 
 const propTypes = {
   data: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     user: UserType,
   }),
-  logUserIn: PropTypes.func.isRequired,
-  snack: PropTypes.func.isRequired,
 }
 
-const _App = ({ data, isLoggedIn, logUserIn, snack }) => {
+const _App = ({ data }) => {
+  const { addSnack } = useSnack()
+  const { loggedIn, signIn } = useAuth()
   const [prevLoading, setprevLoading] = useState(true)
+
+  const onFetch = useCallback(user => {
+    signIn(user, localStorage.getItem('token'))
+    addSnack(greet(user.username))
+  }, [signIn, addSnack])
 
   useEffect(() => {
     if (data) {
       const { loading, error, user } = data
-      if (!loading && !error && !isLoggedIn && prevLoading) {
+      if (!loading && !error && !loggedIn && prevLoading) {
         onFetch(user)
         setprevLoading(prevLoading => !prevLoading)
       }
     }
-  }, [data])
-
-  const onFetch = user => {
-    logUserIn({ user, token: localStorage.getItem('token') })
-    snack([greet(user.username), 'success'])
-  }
+  }, [data, onFetch, loggedIn, prevLoading])
 
   return data && data.loading ? null : (
     <div id="app">
@@ -66,13 +65,6 @@ _App.propTypes = propTypes
 
 const App = compose(
   withRouter,
-  connect(
-    state => ({ isLoggedIn: state.isLoggedIn }),
-    dispatch => ({
-      logUserIn: payload => dispatch(login(payload)),
-      snack: payload => dispatch(snack(payload)),
-    })
-  ),
   graphql(getUser, {
     options: {
       variables: {

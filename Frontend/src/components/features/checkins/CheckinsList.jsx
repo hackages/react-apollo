@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { CheckinItem } from '../dumb/CheckinItem'
-import { Column, RatedBeer } from '../styled/globalStyles'
-import { CheckInType } from '../../types'
+import { CheckinItem } from '../../core/CheckinItem'
+import { Column, RatedBeer } from '../../styled/globalStyles'
+import { CheckInType } from '../../../types'
 
 const propTypes = {
   checkins: PropTypes.arrayOf(CheckInType).isRequired,

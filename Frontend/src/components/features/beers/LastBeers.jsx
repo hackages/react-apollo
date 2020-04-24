@@ -1,7 +1,7 @@
 import React from 'react'
-import { CheckinsProvider } from '../providers/CheckinsProvider'
+import { CheckinsProvider } from '../checkins/CheckinsProvider'
 import { DisplayBeers } from './DisplayBeers'
-import { PaddingContainer } from '../styled/globalStyles'
+import { PaddingContainer } from '../../styled/globalStyles'
 
 export const LastBeers = () => (
   <CheckinsProvider onlyBeers limit={12}>
