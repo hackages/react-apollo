@@ -1,5 +1,5 @@
 import { sleep } from './utils'
-import { useMutation, useQuery } from 'react-apollo'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { removeSnack as removeSnackM, addSnack as addSnackM, logIn as logInM, logOut as logOutM, updateUser as updateUserM } from './API/mutations'
 import { getSnacks, getUserInfo, isLoggedIn } from './API/queries'
 import { path } from 'ramda'

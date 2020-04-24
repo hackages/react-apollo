@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import StarRating from 'react-star-rating-component'
-import { useMutation } from 'react-apollo'
+import { useMutation } from '@apollo/react-hooks'
 import { Modal } from '../../core/Modal'
 import { StyledForm } from '../../styled/globalStyles'
 import hackBeer from '../../../assets/img/hackbeer.svg'

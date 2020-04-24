@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { useQuery } from '@apollo/react-hooks'
 import { Switch, Route, withRouter } from 'react-router'
 import { compose } from 'redux'
-import { graphql } from 'react-apollo'
 import { Home } from './components/pages/Home'
 import { Login } from './components/pages/Login'
 import { Feed } from './components/pages/Feed'
@@ -24,25 +24,31 @@ const propTypes = {
   }),
 }
 
-const _App = ({ data }) => {
+const _App = () => {
   const { addSnack } = useSnack()
   const { loggedIn, signIn } = useAuth()
+  const { loading, error, data } = useQuery(getUser, {
+    variables: {
+      detailed: false,
+      history: false,
+    },
+    skip: !localStorage.getItem('token'),
+  })
   const [prevLoading, setprevLoading] = useState(true)
 
-  const onFetch = useCallback(user => {
+  const onFetched = useCallback(user => {
     signIn(user, localStorage.getItem('token'))
     addSnack(greet(user.username))
   }, [signIn, addSnack])
 
+  // locally sign in user (once) if they were fetched from local storage token
   useEffect(() => {
-    if (data) {
-      const { loading, error, user } = data
-      if (!loading && !error && !loggedIn && prevLoading) {
-        onFetch(user)
-        setprevLoading(prevLoading => !prevLoading)
-      }
+    if (!loading && !error && !loggedIn && prevLoading && data) {
+      console.log('will sign')
+      onFetched(data.user)
+      setprevLoading(prevLoading => !prevLoading)
     }
-  }, [data, onFetch, loggedIn, prevLoading])
+  }, [data, onFetched, loggedIn, prevLoading, error, loading])
 
   return data && data.loading ? null : (
     <div id="app">
@@ -65,15 +71,6 @@ _App.propTypes = propTypes
 
 const App = compose(
   withRouter,
-  graphql(getUser, {
-    options: {
-      variables: {
-        detailed: false,
-        history: false,
-      },
-    },
-    skip: !localStorage.getItem('token'),
-  })
 )(_App)
 
 export default App

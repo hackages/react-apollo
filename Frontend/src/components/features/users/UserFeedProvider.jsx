@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types'
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { useAuth } from '../../../store'
 import { getUserFeed, checkinSubscription } from '../../../API/queries'
 

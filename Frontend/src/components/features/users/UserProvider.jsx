@@ -1,4 +1,4 @@
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { getUser } from '../../../API/queries'
 
 export const UserProvider = ({

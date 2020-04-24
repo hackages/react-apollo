@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { getBeer } from '../../../API/queries'
 
 const random = () => Math.floor(Math.random() * 160)
